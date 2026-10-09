@@ -1,7 +1,7 @@
 # 青雾 × 桂雾冷萃 · AI 营销全案
 
 > AI 应用作品集：交互式 H5 营销 Demo + AIGC 视觉创作项目
-> 在线体验：**https://ec9381594d304b13a1fe9d2bd330cff6.app.workbuddy.host**
+> 在线体验：**https://13886231247.github.io/ai-marketing-portfolio/**
 
 ---
 
