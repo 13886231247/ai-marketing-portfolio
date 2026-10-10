@@ -2,804 +2,291 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>青雾 · 寻桂集 | 桂雾冷萃 秋季限定</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 营销应用作品集 · 青雾「桂雾冷萃」新品全案</title>
+<meta name="description" content="AIGC 视觉物料 × 交互式 H5 Demo × 品牌智能体 —— 一个用 AI 完成的完整营销全案。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 营销应用作品集 · 青雾「桂雾冷萃」">
+<meta property="og:description" content="AIGC 视觉物料 × 交互式 H5 Demo × 品牌智能体，全链路用 AI 完成的营销全案。">
+<meta property="og:image" content="assets/kv.png">
 <style>
   :root{
-    --ink:#1F3A34;          /* 深墨绿 */
-    --mist:#9FC5BE;         /* 雾青 */
-    --mist-light:#E7F0EE;   /* 浅雾青 */
-    --gold:#C9A227;         /* 暖金 */
-    --gold-soft:#E5C77E;
-    --cream:#F7F4EC;        /* 米白底 */
-    --paper:#FFFFFF;
-    --shadow:0 8px 30px rgba(31,58,52,.10);
+    --ink:#1D2B28; --ink-2:#4A5A56; --ink-3:#7C8A86;
+    --jade:#2E6B5E; --jade-deep:#1F4F45; --jade-soft:#E7F0EC;
+    --gold:#C9A227; --gold-soft:#F6EED6;
+    --paper:#FAF8F3; --line:#E3DED2;
   }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{height:100%}
+  *{margin:0;padding:0;box-sizing:border-box}
   body{
-    font-family:"PingFang SC","Microsoft YaHei",sans-serif;
-    background:linear-gradient(180deg,#EDF3F1 0%,var(--cream) 40%);
-    color:var(--ink);
-    display:flex;justify-content:center;
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
   }
-  #app{
-    width:100%;max-width:480px;min-height:100vh;
-    background:var(--cream);
-    position:relative;
-    box-shadow:0 0 40px rgba(31,58,52,.08);
-    padding-bottom:76px;
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;padding:52px 0 30px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.14em;color:var(--jade);
+    background:var(--jade-soft);border:1px solid #CFE2DA;
+    padding:5px 14px;border-radius:999px;margin-bottom:20px;font-weight:600;
   }
-  /* ---------- 顶部 ---------- */
-  .topbar{
-    position:sticky;top:0;z-index:50;
-    display:flex;align-items:center;gap:8px;
-    padding:12px 16px;
-    background:rgba(247,244,236,.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(31,58,52,.06);
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  h1.title{font-size:clamp(28px,4.4vw,42px);line-height:1.28;letter-spacing:-.01em;font-weight:800}
+  h1.title em{font-style:normal;color:var(--jade)}
+  .sub{margin-top:16px;font-size:16px;color:var(--ink-2);max-width:30em}
+  .tags{margin-top:22px;display:flex;flex-wrap:wrap;gap:9px}
+  .tag{
+    font-size:13px;padding:6px 13px;border-radius:8px;
+    background:#fff;border:1px solid var(--line);color:var(--ink-2);
   }
-  .brand{font-weight:700;letter-spacing:2px;font-size:17px}
-  .brand em{font-style:normal;color:var(--gold)}
-  .topbar .spacer{flex:1}
-  .btn-ghost{
-    font-size:12px;color:var(--ink);opacity:.75;
-    border:1px solid rgba(31,58,52,.25);border-radius:999px;
-    padding:4px 10px;background:transparent;
+  .cta{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:10px;font-size:15px;font-weight:600;
+    text-decoration:none;transition:.18s;border:1px solid transparent;
   }
-  /* ---------- 页面切换 ---------- */
-  .page{display:none;animation:fade .35s ease}
-  .page.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .page-title{
-    text-align:center;margin:22px 16px 4px;
-    font-size:22px;font-weight:700;letter-spacing:3px;
+  .btn-main{background:var(--jade-deep);color:#fff;box-shadow:0 8px 22px rgba(31,79,69,.22)}
+  .btn-main:hover{background:var(--jade);transform:translateY(-2px)}
+  .btn-ghost{background:#fff;color:var(--jade-deep);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--jade);color:var(--jade)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold) 0%,#B08A1B 100%);color:#fff;box-shadow:0 8px 22px rgba(201,162,39,.28)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .hero-art{position:relative}
+  .hero-art img{
+    width:100%;border-radius:16px;display:block;
+    box-shadow:0 20px 50px rgba(29,43,40,.20);
   }
-  .page-sub{text-align:center;font-size:12px;color:var(--ink);opacity:.55;margin-bottom:18px;letter-spacing:1px}
-  /* ---------- 首页 ---------- */
-  .hero{position:relative;overflow:hidden}
-  .hero img{width:100%;display:block}
-  .hero .veil{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(231,240,238,.55) 0%,rgba(231,240,238,0) 30%,rgba(31,58,52,.55) 100%);
-    pointer-events:none;
+  .hero-art::after{
+    content:"";position:absolute;inset:0;border-radius:16px;
+    border:1px solid rgba(255,255,255,.4);pointer-events:none;
   }
-  .hero-copy{
-    position:absolute;left:0;right:0;bottom:0;
-    padding:22px 20px 26px;color:#fff;
-    background:linear-gradient(180deg,transparent,rgba(31,58,52,.78));
+
+  /* ---------- SECTION ---------- */
+  section{padding:30px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+  .sec-num{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.1em}
+  .sec-head h2{font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .sec-head p{font-size:13.5px;color:var(--ink-3);flex:1;min-width:160px}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:20px;text-decoration:none;color:inherit;transition:.2s;
+    display:flex;flex-direction:column;
   }
-  .hero-copy .tag{
-    display:inline-block;font-size:11px;letter-spacing:3px;
-    border:1px solid rgba(255,255,255,.6);border-radius:999px;
-    padding:3px 10px;margin-bottom:8px;
+  .card:hover{transform:translateY(-3px);border-color:#CBD9D3;box-shadow:0 14px 32px rgba(29,43,40,.10)}
+  .card .k{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    font-size:16px;margin-bottom:13px;background:var(--jade-soft);
   }
-  .hero-copy h1{font-size:30px;letter-spacing:5px;font-weight:700;text-shadow:0 2px 12px rgba(0,0,0,.25)}
-  .hero-copy p{font-size:13px;opacity:.92;margin-top:6px;letter-spacing:2px}
-  .cta-row{padding:18px 16px 6px}
-  .btn-primary{
-    width:100%;border:none;border-radius:14px;
-    background:linear-gradient(135deg,var(--ink) 0%,#2C5049 100%);
-    color:#F5E9C8;font-size:17px;font-weight:700;letter-spacing:4px;
-    padding:15px 0;box-shadow:0 10px 24px rgba(31,58,52,.28);
-    position:relative;overflow:hidden;
+  .card h3{font-size:16px;font-weight:700;margin-bottom:7px}
+  .card p{font-size:13.5px;color:var(--ink-2);flex:1}
+  .card .more{margin-top:14px;font-size:13px;font-weight:700;color:var(--jade);display:flex;align-items:center;gap:5px}
+
+  /* ---------- IMAGE STRIP ---------- */
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  .strip figure{position:relative;border-radius:12px;overflow:hidden;background:#EDEAE2;aspect-ratio:3/4}
+  .strip img{width:100%;height:100%;object-fit:cover;display:block;transition:.35s}
+  .strip figure:hover img{transform:scale(1.04)}
+  .strip figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;
+    font-size:12px;color:#fff;font-weight:600;
+    background:linear-gradient(transparent,rgba(20,35,30,.78));
   }
-  .btn-primary::after{
-    content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-    animation:shine 2.8s infinite;
+
+  /* ---------- FLOW ---------- */
+  .flow{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;
   }
-  @keyframes shine{0%{left:-60%}55%{left:130%}100%{left:130%}}
-  .quick-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
-    padding:14px 16px 8px;
+  .flow .step{text-align:center}
+  .flow .step .n{
+    font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.08em;margin-bottom:6px;
   }
-  .quick-card{
-    background:var(--paper);border-radius:14px;padding:14px 8px;
-    text-align:center;box-shadow:var(--shadow);border:1px solid rgba(159,197,190,.35);
+  .flow .step .t{font-size:14.5px;font-weight:700;margin-bottom:4px}
+  .flow .step .d{font-size:12.5px;color:var(--ink-3);line-height:1.6}
+  .flow .arw{color:#C8D2CE;font-size:18px}
+
+  /* ---------- SPLIT ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .pane{border-radius:14px;padding:22px;border:1px solid var(--line);background:#fff}
+  .pane.human{background:linear-gradient(160deg,#FBF7EA,#fff);border-color:#EADFC0}
+  .pane.ai{background:linear-gradient(160deg,#EAF3EF,#fff);border-color:#CFE2DA}
+  .pane h4{font-size:15px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .pane h4 span{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px}
+  .pane.human h4 span{background:var(--gold-soft);color:#8A6E12}
+  .pane.ai h4 span{background:var(--jade-soft);color:var(--jade)}
+  .pane ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .pane li{font-size:13.5px;color:var(--ink-2);padding-left:18px;position:relative}
+  .pane li::before{content:"—";position:absolute;left:0;color:#C3B78F}
+  .pane.ai li::before{color:#9DBFB4}
+
+  /* ---------- FOOTER ---------- */
+  footer{margin-top:34px;padding:26px 0 40px;border-top:1px solid var(--line)}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+  .foot-row .l{font-size:13px;color:var(--ink-3)}
+  .foot-links{display:flex;gap:10px;flex-wrap:wrap}
+  .foot-links a{
+    font-size:13px;text-decoration:none;color:var(--jade);font-weight:600;
+    padding:8px 15px;border:1px solid var(--line);border-radius:9px;background:#fff;
   }
-  .quick-card .ico{font-size:24px}
-  .quick-card .t{font-size:13px;font-weight:600;margin-top:6px}
-  .rule-box{
-    margin:10px 16px 16px;padding:14px 16px;
-    background:rgba(231,240,238,.7);border-radius:14px;
-    font-size:12px;line-height:1.8;color:var(--ink);opacity:.85;
-  }
-  .rule-box b{color:var(--ink)}
-  /* ---------- 门店 ---------- */
-  .city-tabs{display:flex;gap:8px;padding:0 16px 14px;overflow-x:auto}
-  .city-tab{
-    flex:none;padding:7px 18px;border-radius:999px;font-size:13px;
-    background:var(--paper);border:1px solid rgba(31,58,52,.15);
-  }
-  .city-tab.on{background:var(--ink);color:#F5E9C8;border-color:var(--ink)}
-  .store-list{padding:0 16px;display:flex;flex-direction:column;gap:10px}
-  .store{
-    background:var(--paper);border-radius:14px;padding:14px 16px;
-    box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;
-  }
-  .store .dot{width:9px;height:9px;border-radius:50%;flex:none}
-  .store .dot.on{background:#3E8E6B;box-shadow:0 0 0 4px rgba(62,142,107,.18)}
-  .store .dot.pre{background:var(--gold-soft)}
-  .store .info{flex:1}
-  .store .name{font-size:15px;font-weight:600}
-  .store .addr{font-size:12px;opacity:.6;margin-top:3px}
-  .store .status{font-size:11px;padding:4px 9px;border-radius:999px;flex:none}
-  .status.on{background:rgba(62,142,107,.12);color:#2F7A57}
-  .status.pre{background:rgba(201,162,39,.14);color:#9A7B1C}
-  .store-cta{
-    margin:14px 16px;text-align:center;font-size:12px;opacity:.6;
-  }
-  /* ---------- AI 海报 ---------- */
-  .up-area{
-    margin:0 16px;border:1.5px dashed rgba(31,58,52,.35);border-radius:16px;
-    background:var(--paper);text-align:center;padding:30px 16px;
-  }
-  .up-area .ico{font-size:34px}
-  .up-area .t{font-size:14px;font-weight:600;margin-top:8px}
-  .up-area .d{font-size:12px;opacity:.55;margin-top:4px}
-  .filter-row{display:flex;gap:10px;padding:16px}
-  .filter-chip{
-    flex:1;text-align:center;padding:10px 0;border-radius:12px;font-size:13px;
-    background:var(--paper);border:1.5px solid rgba(31,58,52,.15);
-  }
-  .filter-chip.on{border-color:var(--gold);background:rgba(201,162,39,.10);font-weight:600;color:#8A6D14}
-  #posterWrap{margin:6px 16px 0;display:none;text-align:center}
-  #posterCanvas{width:100%;border-radius:16px;box-shadow:0 14px 34px rgba(31,58,52,.22)}
-  .actions{display:flex;gap:10px;padding:14px 16px 4px}
-  .btn-sec{
-    flex:1;border:1.5px solid var(--ink);background:transparent;color:var(--ink);
-    border-radius:14px;padding:13px 0;font-size:15px;font-weight:600;letter-spacing:2px;
-  }
-  .btn-gold{
-    flex:1.4;border:none;border-radius:14px;
-    background:linear-gradient(135deg,var(--gold) 0%,#B08A1B 100%);
-    color:#fff;font-size:15px;font-weight:700;letter-spacing:2px;
-    box-shadow:0 8px 20px rgba(201,162,39,.35);
-  }
-  .share-tip{font-size:11px;text-align:center;opacity:.5;margin:10px 16px 16px}
-  /* ---------- 优惠券 ---------- */
-  .wallet{padding:0 16px;display:flex;flex-direction:column;gap:12px}
-  .coupon{
-    position:relative;border-radius:16px;overflow:hidden;
-    display:flex;align-items:stretch;box-shadow:var(--shadow);
-  }
-  .coupon .left{
-    width:118px;background:linear-gradient(160deg,var(--ink),#2C5049);
-    color:#F5E9C8;display:flex;flex-direction:column;justify-content:center;align-items:center;
-    padding:18px 6px;
-  }
-  .coupon .left .num{font-size:34px;font-weight:800}
-  .coupon .left .num small{font-size:14px;font-weight:600}
-  .coupon .left .cap{font-size:11px;letter-spacing:2px;margin-top:2px;opacity:.85}
-  .coupon .right{flex:1;background:var(--paper);padding:14px 14px;display:flex;flex-direction:column;justify-content:center}
-  .coupon .right .t{font-size:15px;font-weight:700}
-  .coupon .right .d{font-size:11px;opacity:.55;margin-top:4px;line-height:1.6}
-  .coupon .right .use{
-    align-self:flex-start;margin-top:10px;font-size:12px;font-weight:600;
-    background:var(--ink);color:#F5E9C8;border-radius:999px;padding:6px 16px;
-  }
-  .coupon.got .left{background:linear-gradient(160deg,var(--gold),#A67F12);color:#fff}
-  .coupon-mask{
-    position:absolute;left:118px;top:0;bottom:0;width:0;
-    border-left:2px dashed rgba(31,58,52,.18);
-  }
-  .coupon::before,.coupon::after{
-    content:"";position:absolute;width:16px;height:16px;border-radius:50%;
-    background:var(--cream);left:110px;
-  }
-  .coupon::before{top:-8px}.coupon::after{bottom:-8px}
-  .coupon .locked{filter:grayscale(1);opacity:.55}
-  .coupon-rules{margin:16px;padding:14px 16px;background:rgba(231,240,238,.7);border-radius:14px;font-size:12px;line-height:1.9;opacity:.85}
-  .coupon-rules b{display:block;margin-bottom:4px;font-size:13px}
-  /* ---------- 产品详情 ---------- */
-  .prod-card{margin:0 16px 12px;background:var(--paper);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-  .prod-card img{width:100%;display:block}
-  .prod-card .body{padding:16px}
-  .prod-card h3{font-size:17px;letter-spacing:2px}
-  .prod-card .desc{font-size:13px;line-height:1.9;opacity:.75;margin-top:8px}
-  .spec-row{display:flex;gap:10px;padding:0 16px 4px}
-  .spec-box{
-    flex:1;background:var(--paper);border-radius:14px;padding:14px 10px;
-    text-align:center;box-shadow:var(--shadow);
-  }
-  .spec-box .v{font-size:17px;font-weight:800;color:#2F7A57}
-  .spec-box .k{font-size:11px;opacity:.55;margin-top:4px}
-  .ing-list{margin:10px 16px 16px;background:var(--paper);border-radius:16px;box-shadow:var(--shadow);padding:6px 16px}
-  .ing-item{display:flex;justify-content:space-between;padding:12px 0;font-size:13px;border-bottom:1px solid rgba(31,58,52,.06)}
-  .ing-item:last-child{border-bottom:none}
-  .ing-item .lab{font-weight:600}
-  .ing-item .val{opacity:.6}
-  /* ---------- 底部导航 ---------- */
-  .tabbar{
-    position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-    width:100%;max-width:480px;z-index:60;
-    display:flex;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
-    border-top:1px solid rgba(31,58,52,.08);
-  }
-  .tab{
-    flex:1;text-align:center;padding:9px 0 10px;font-size:10.5px;color:#8AA39D;
-    position:relative;
-  }
-  .tab .ico{font-size:20px;display:block;margin-bottom:2px}
-  .tab.on{color:var(--ink);font-weight:700}
-  .tab.on::before{
-    content:"";position:absolute;top:0;left:32%;right:32%;height:2.5px;
-    background:var(--gold);border-radius:0 0 3px 3px;
-  }
-  /* ---------- 数据看板 ---------- */
-  #dashBtn{
-    position:fixed;right:14px;bottom:90px;z-index:70;
-    background:var(--ink);color:#F5E9C8;border-radius:999px;
-    font-size:11px;padding:9px 14px;box-shadow:0 8px 20px rgba(31,58,52,.35);
-    letter-spacing:1px;
-  }
-  #dash{
-    position:fixed;inset:0;z-index:90;display:none;
-    background:rgba(31,58,52,.45);backdrop-filter:blur(3px);
-  }
-  #dash.open{display:flex;align-items:flex-end;justify-content:center}
-  .dash-panel{
-    width:100%;max-width:480px;background:var(--paper);
-    border-radius:20px 20px 0 0;padding:20px 18px 30px;max-height:72vh;overflow:auto;
-  }
-  .dash-panel h3{font-size:16px;letter-spacing:2px;margin-bottom:2px}
-  .dash-panel .hint{font-size:11px;opacity:.5;margin-bottom:14px}
-  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-  .kpi{
-    background:var(--mist-light);border-radius:12px;padding:10px 6px;text-align:center;
-  }
-  .kpi .v{font-size:17px;font-weight:800;color:var(--ink)}
-  .kpi .k{font-size:10px;opacity:.6;margin-top:2px}
-  .ev-log{font-size:11px;line-height:1.9;color:#40615A;background:#FAF8F2;border-radius:10px;padding:10px 12px;max-height:160px;overflow:auto}
-  .dash-close{margin-top:14px;width:100%;border:1px solid rgba(31,58,52,.3);background:transparent;border-radius:12px;padding:11px 0;font-size:14px;color:var(--ink)}
-  /* ---------- 弹层 ---------- */
-  .modal{
-    position:fixed;inset:0;z-index:100;display:none;
-    background:rgba(31,58,52,.45);backdrop-filter:blur(3px);
-    align-items:center;justify-content:center;padding:32px;
-  }
-  .modal.open{display:flex}
-  .modal-card{
-    background:var(--paper);border-radius:18px;padding:26px 22px;
-    width:100%;max-width:340px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.25);
-  }
-  .modal-card .ico{font-size:38px}
-  .modal-card h4{font-size:17px;margin:10px 0 8px;letter-spacing:1px}
-  .modal-card p{font-size:13px;line-height:1.8;opacity:.7}
-  .modal-card button{
-    margin-top:18px;width:100%;border:none;border-radius:12px;
-    background:var(--ink);color:#F5E9C8;font-size:14px;font-weight:600;padding:12px 0;letter-spacing:2px;
-  }
-  .toast{
-    position:fixed;top:18%;left:50%;transform:translateX(-50%) translateY(-8px);
-    background:rgba(31,58,52,.92);color:#F5E9C8;font-size:13px;letter-spacing:1px;
-    padding:11px 22px;border-radius:999px;z-index:120;opacity:0;pointer-events:none;
-    transition:.3s;
-  }
-  /* ---------- 智能体对话 ---------- */
-  #chatBtn{
-    position:fixed;right:14px;bottom:150px;z-index:70;
-    height:44px;border-radius:999px;border:none;
-    padding:0 16px 0 13px;font-size:14px;font-weight:700;letter-spacing:1px;
-    background:linear-gradient(135deg,var(--gold) 0%,#B08A1B 100%);
-    color:#fff;box-shadow:0 8px 20px rgba(201,162,39,.5);
-  }
-  #chatBtn .dot{display:inline-block;margin-right:5px}
-  #chatBtn::after{
-    content:"";position:absolute;top:-3px;right:-3px;width:12px;height:12px;
-    border-radius:50%;background:#E85D5D;border:2px solid #fff;
-  }
-  #chatLabel{
-    position:fixed;right:14px;bottom:202px;z-index:70;
-    background:var(--ink);color:#F5E9C8;font-size:11px;letter-spacing:1px;
-    padding:6px 12px;border-radius:10px 10px 10px 2px;
-    opacity:0;transform:translateY(6px);transition:.35s;pointer-events:none;
-    box-shadow:0 6px 16px rgba(31,58,52,.3);
-  }
-  #chatLabel.show{opacity:1;transform:none}
-  .agent-banner{
-    margin:4px 16px 6px;padding:14px 16px;border-radius:14px;
-    background:linear-gradient(135deg,var(--ink) 0%,#2C5049 100%);
-    color:#F5E9C8;display:flex;align-items:center;gap:12px;
-    box-shadow:var(--shadow);
-  }
-  .agent-banner .ico{font-size:26px}
-  .agent-banner .tt{font-size:14px;font-weight:700;letter-spacing:1px}
-  .agent-banner .dd{font-size:11px;opacity:.75;margin-top:3px}
-  .agent-banner .go{
-    margin-left:auto;font-size:11px;background:rgba(245,233,200,.15);
-    padding:6px 12px;border-radius:999px;flex:none;letter-spacing:1px;
-  }
-  #chat{
-    position:fixed;inset:0;z-index:95;display:none;
-    background:rgba(31,58,52,.45);backdrop-filter:blur(3px);
-  }
-  #chat.open{display:flex;align-items:flex-end;justify-content:center}
-  .chat-panel{
-    width:100%;max-width:480px;height:78vh;background:var(--cream);
-    border-radius:20px 20px 0 0;display:flex;flex-direction:column;overflow:hidden;
-  }
-  .chat-head{
-    padding:14px 16px;background:linear-gradient(135deg,var(--ink) 0%,#2C5049 100%);
-    color:#F5E9C8;display:flex;align-items:center;gap:10px;flex:none;
-  }
-  .chat-head .ava{
-    width:36px;height:36px;border-radius:50%;background:rgba(245,233,200,.15);
-    display:flex;align-items:center;justify-content:center;font-size:18px;
-  }
-  .chat-head .nm{font-size:15px;font-weight:700;letter-spacing:1px}
-  .chat-head .st{font-size:10px;opacity:.75;margin-top:2px}
-  .chat-head .cls{
-    margin-left:auto;background:none;border:none;color:#F5E9C8;
-    font-size:20px;opacity:.8;padding:4px 8px;
-  }
-  .chat-body{
-    flex:1;overflow-y:auto;padding:14px 14px 6px;display:flex;flex-direction:column;gap:10px;
-  }
-  .msg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.75;white-space:pre-wrap}
-  .msg.bot{
-    align-self:flex-start;background:var(--paper);border-bottom-left-radius:4px;
-    box-shadow:0 2px 8px rgba(31,58,52,.06);
-  }
-  .msg.user{
-    align-self:flex-end;background:linear-gradient(135deg,var(--ink),#2C5049);
-    color:#F5E9C8;border-bottom-right-radius:4px;
-  }
-  .msg .mbadge{
-    display:block;font-size:10px;color:#9A7B1C;margin-bottom:4px;font-weight:600;
-  }
-  .chips{display:flex;gap:8px;flex-wrap:wrap;padding:8px 14px 2px}
-  .chip{
-    font-size:12px;padding:7px 12px;border-radius:999px;
-    background:var(--paper);border:1px solid rgba(201,162,39,.5);color:#8A6D14;
-  }
-  .chat-input{
-    flex:none;display:flex;gap:8px;padding:10px 12px 14px;background:rgba(255,255,255,.6);
-  }
-  .chat-input input{
-    flex:1;border:1px solid rgba(31,58,52,.2);border-radius:999px;
-    padding:11px 14px;font-size:13px;background:var(--paper);outline:none;
-  }
-  .chat-input button{
-    border:none;border-radius:999px;padding:0 18px;
-    background:var(--ink);color:#F5E9C8;font-size:14px;font-weight:600;
+  .foot-links a:hover{border-color:var(--jade)}
+
+  @media(max-width:760px){
+    .hero{padding:34px 0 18px}
+    .hero-grid{grid-template-columns:1fr;gap:26px}
+    .hero-art{order:-1}
+    .grid-3{grid-template-columns:1fr}
+    .strip{grid-template-columns:1fr 1fr}
+    .flow{grid-template-columns:1fr;gap:14px}
+    .flow .arw{transform:rotate(90deg);text-align:center}
+    .split{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
-<div id="app">
+<div class="wrap">
 
-  <!-- 顶栏 -->
-  <div class="topbar">
-    <div class="brand">青雾<em> · </em>寻桂集</div>
-    <div class="spacer"></div>
-    <button class="btn-ghost" onclick="shareActivity()">分享活动</button>
-  </div>
-
-  <!-- ============ 首页 ============ -->
-  <section class="page active" id="page-home">
-    <div class="hero">
-      <img src="assets/kv.png" alt="桂雾冷萃主视觉">
-      <div class="veil"></div>
-      <div class="hero-copy">
-        <span class="tag">秋季限定 · 秋季上新</span>
-        <h1>桂雾冷萃</h1>
-        <p>秋日第一杯桂花冷萃，等你来寻</p>
-      </div>
-    </div>
-    <div class="cta-row">
-      <button class="btn-primary" onclick="go('poster');track('click_join',{from:'home'})">立 即 参 与</button>
-    </div>
-    <div class="quick-grid">
-      <div class="quick-card" onclick="go('poster')"><div class="ico">🖼️</div><div class="t">AI 打卡海报</div></div>
-      <div class="quick-card" onclick="go('coupon')"><div class="ico">🎟️</div><div class="t">9 元尝鲜券</div></div>
-      <div class="quick-card" onclick="go('store')"><div class="ico">📍</div><div class="t">门店查询</div></div>
-    </div>
-    <div class="agent-banner" onclick="openChat()">
-      <div class="ico">🍵</div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-grid">
       <div>
-        <div class="tt">在线寻桂顾问</div>
-        <div class="dd">产品咨询 · 帮写文案 · 查门店 · 玩问答赢优惠券</div>
-      </div>
-      <div class="go">点我对话 →</div>
-    </div>
-    <div class="rule-box">
-      <b>活动时间</b>　9 月 22 日 — 10 月 12 日<br>
-      <b>参与方式</b>　生成专属桂花打卡海报 → 分享至朋友圈/小红书 → 领取 9 元新品券 → 到店自提或小程序下单核销
-    </div>
-  </section>
-
-  <!-- ============ 门店查询 ============ -->
-  <section class="page" id="page-store">
-    <div class="page-title">门店寻桂</div>
-    <div class="page-sub">选择城市，查看桂雾冷萃上线门店</div>
-    <div class="city-tabs" id="cityTabs"></div>
-    <div class="store-list" id="storeList"></div>
-    <div class="store-cta">* 上线状态每日更新，上线前可先领券备用</div>
-  </section>
-
-  <!-- ============ AI 海报 ============ -->
-  <section class="page" id="page-poster">
-    <div class="page-title">AI 寻桂海报</div>
-    <div class="page-sub">上传一张照片，生成你的专属桂花打卡海报</div>
-    <label class="up-area" id="upArea">
-      <div class="ico">📷</div>
-      <div class="t">点击上传照片</div>
-      <div class="d">支持手机相册 / 拍照，仅在本地生成，不会上传服务器</div>
-      <input type="file" id="fileInput" accept="image/*" style="display:none">
-    </label>
-    <div class="filter-row">
-      <div class="filter-chip on" data-f="warm" onclick="pickFilter(this)">暖金秋阳</div>
-      <div class="filter-chip" data-f="mist" onclick="pickFilter(this)">雾青江南</div>
-      <div class="filter-chip" data-f="clear" onclick="pickFilter(this)">清透白露</div>
-    </div>
-    <div id="posterWrap">
-      <canvas id="posterCanvas" width="1080" height="1440"></canvas>
-      <div class="actions">
-        <button class="btn-sec" onclick="regen()">换一张</button>
-        <button class="btn-gold" onclick="savePoster()">保存海报</button>
-      </div>
-      <div class="share-tip">保存后分享至朋友圈 / 小红书，凭分享截图到门店可再领「满 20 减 3」通用券</div>
-    </div>
-  </section>
-
-  <!-- ============ 优惠券 ============ -->
-  <section class="page" id="page-coupon">
-    <div class="page-title">领券尝鲜</div>
-    <div class="page-sub">每个微信账号限领 1 张 9 元新品立减券</div>
-    <div class="wallet">
-      <div class="coupon" id="couponMain">
-        <div class="left"><div class="num">¥9<small></small></div><div class="cap">新品立减</div></div>
-        <div class="right">
-          <div class="t">桂雾冷萃 · 新品尝鲜券</div>
-          <div class="d">券后低至 ¥X 起 · 领取后 7 天内有效<br>仅限到店自提 / 小程序下单使用</div>
-          <button class="use" id="claimBtn" onclick="claimCoupon()">立即领取</button>
+        <div class="eyebrow">AI 营销应用作品集</div>
+        <h1 class="title">青雾 × <em>桂雾冷萃</em><br>秋季新品 AI 营销全案</h1>
+        <p class="sub">一个从策略到落地的完整营销项目——AIGC 视觉物料、交互式 H5、品牌智能体，全链路用 AI 完成，并有可在线运行的真实成果。</p>
+        <div class="tags">
+          <span class="tag">AIGC 视觉创作</span>
+          <span class="tag">提示词工程</span>
+          <span class="tag">交互式 H5 Demo</span>
+          <span class="tag">品牌智能体</span>
+          <span class="tag">21 天全案排期</span>
+          <span class="tag">KPI 与合规风控</span>
         </div>
-        <div class="coupon-mask"></div>
-      </div>
-      <div class="coupon locked" id="couponShare">
-        <div class="left"><div class="num">20<small style="font-size:14px">减</small>3</div><div class="cap">通用券</div></div>
-        <div class="right">
-          <div class="t">满 20 减 3 · 通用券</div>
-          <div class="d">生成专属海报并分享成功后解锁</div>
-          <button class="use" onclick="go('poster')">去解锁</button>
+        <div class="cta">
+          <a class="btn btn-main" href="./demo.html">▶ 进入 H5 在线体验</a>
+          <a class="btn btn-gold" href="./AI营销作品集_青雾桂雾冷萃.pdf" target="_blank">📄 查看完整全案 PDF</a>
         </div>
-        <div class="coupon-mask"></div>
+      </div>
+      <div class="hero-art">
+        <img src="./assets/kv.png" alt="桂雾冷萃 主视觉">
       </div>
     </div>
-    <div class="coupon-rules">
-      <b>使用规则</b>
-      1. 每个微信账号限领 1 张 9 元新品立减券，券后价格以门店定价为准；<br>
-      2. 领取后自动存入卡包，点击「立即使用」跳转品牌小程序「桂雾冷萃」商品页下单；<br>
-      3. 优惠券有效期：领取后 7 天内有效，仅限到店自提 / 小程序下单使用；<br>
-      4. 生成专属海报并分享成功，可额外获得 1 张满 20 减 3 元通用券，激励社交裂变。
+  </header>
+
+  <!-- 三大作品 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">WORKS</span>
+      <h2>三件作品，一条完整链路</h2>
+      <p>从"让用户看见"到"让用户下单"，每个环节都有对应成果</p>
+    </div>
+    <div class="grid-3">
+      <a class="card" href="./aigc-images/01-主视觉-定稿.png" target="_blank">
+        <div class="k">🎨</div>
+        <h3>01 · AIGC 视觉物料</h3>
+        <p>6 张统一 VI 的宣传物料（主视觉 + 小红书种草 3 图 + 预热悬念 2 图），完整记录 提示词 V1→V2→V3 三轮迭代过程。</p>
+        <div class="more">查看物料 →</div>
+      </a>
+      <a class="card" href="./demo.html">
+        <div class="k">📱</div>
+        <h3>02 · 交互式 H5 Demo</h3>
+        <p>门店查询 · AI 打卡海报生成 · 优惠券领取 · 数据看板，并内嵌「青雾寻桂顾问」智能体，全流程可真实操作。</p>
+        <div class="more">在线体验 →</div>
+      </a>
+      <a class="card" href="./AI营销作品集_青雾桂雾冷萃.pdf" target="_blank">
+        <div class="k">📄</div>
+        <h3>03 · 完整营销全案</h3>
+        <p>项目背景、痛点解题、物料体系、H5 方案、智能体、21 天排期、KPI 与 50 万预算、合规风控、项目复盘，一册完整提案。</p>
+        <div class="more">打开 PDF →</div>
+      </a>
     </div>
   </section>
 
-  <!-- ============ 产品详情 ============ -->
-  <section class="page" id="page-product">
-    <div class="page-title">桂雾冷萃</div>
-    <div class="page-sub">鲜萃绿茶底 × 金桂蜜 · 低糖配方 · 秋季限定</div>
-    <div class="prod-card">
-      <img src="assets/tea-scene.png" alt="桂雾冷萃产品图">
-      <div class="body">
-        <h3>一杯江南的秋天</h3>
-        <div class="desc">金黄桂花漂浮于浅青茶汤之上，冷萃工艺 slow brew 8 小时，茶汤清冽回甘，桂香浮而不腻。入口先是绿茶的清，尾韵是金桂的甜。</div>
-      </div>
+  <!-- 物料展示 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">VISUAL</span>
+      <h2>AIGC 视觉物料精选</h2>
+      <p>浅青 + 暖金的"清冷江南"视觉体系，六张图同一色板</p>
     </div>
-    <div class="spec-row">
-      <div class="spec-box"><div class="v">≈145</div><div class="k">热量 kcal/500ml</div></div>
-      <div class="spec-box"><div class="v">低糖</div><div class="k">甜度档位</div></div>
-      <div class="spec-box"><div class="v">8h</div><div class="k">冷萃时长</div></div>
-    </div>
-    <div class="ing-list">
-      <div class="ing-item"><span class="lab">配料</span><span class="val">鲜萃绿茶、金桂蜜、饮用冰水</span></div>
-      <div class="ing-item"><span class="lab">甜度可选</span><span class="val">不另外加糖 / 微糖 / 低糖</span></div>
-      <div class="ing-item"><span class="lab">温度</span><span class="val">冰饮 / 少冰 / 去冰</span></div>
-      <div class="ing-item"><span class="lab">上市时间</span><span class="val">9 月 22 日 · 售完即止</span></div>
+    <div class="strip">
+      <figure><img src="./assets/kv.png" alt="主视觉"><figcaption>官宣主视觉 KV</figcaption></figure>
+      <figure><img src="./assets/tea-scene.png" alt="下午茶场景"><figcaption>小红书种草 · 下午茶场景</figcaption></figure>
+      <figure><img src="./assets/teaser.png" alt="悬念海报"><figcaption>预热悬念 · 桂花飘落</figcaption></figure>
     </div>
   </section>
 
-  <!-- 底部导航 -->
-  <nav class="tabbar">
-    <div class="tab on" data-p="home" onclick="go('home')"><span class="ico">🏠</span>首页</div>
-    <div class="tab" data-p="poster" onclick="go('poster')"><span class="ico">🖼️</span>AI海报</div>
-    <div class="tab" data-p="coupon" onclick="go('coupon')"><span class="ico">🎟️</span>优惠券</div>
-    <div class="tab" data-p="store" onclick="go('store')"><span class="ico">📍</span>门店</div>
-    <div class="tab" data-p="product" onclick="go('product')"><span class="ico">🍵</span>产品</div>
-  </nav>
-
-  <!-- 数据看板入口 -->
-  <button id="dashBtn" onclick="openDash()">📊 数据看板</button>
-  <div id="dash">
-    <div class="dash-panel">
-      <h3>H5 数据看板</h3>
-      <div class="hint">真实采集本 H5 的埋点事件（对应方案「埋点事件清单」），演示用：数据仅存于本机浏览器</div>
-      <div class="kpi-grid" id="kpiGrid"></div>
-      <div class="ev-log" id="evLog"></div>
-      <button class="dash-close" onclick="document.getElementById('dash').classList.remove('open')">收起看板</button>
+  <!-- 转化链路 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">FUNNEL</span>
+      <h2>种草到下单的转化闭环</h2>
+      <p>三个交付物不是并列的三件事，而是一条完整链路</p>
     </div>
-  </div>
-
-  <!-- 弹层 -->
-  <div class="modal" id="modal">
-    <div class="modal-card" id="modalCard"></div>
-  </div>
-  <div class="toast" id="toast"></div>
-
-  <!-- 智能体对话组件：青雾寻桂顾问 -->
-  <button id="chatBtn" onclick="openChat()"><span class="dot">🍵</span>寻桂顾问</button>
-  <div id="chatLabel">有疑问？问寻桂顾问，秒回～</div>
-  <div id="chat">
-    <div class="chat-panel">
-      <div class="chat-head">
-        <div class="ava">🍵</div>
-        <div><div class="nm">青雾寻桂顾问</div><div class="st">在线 · 7×24h 品牌智能顾问</div></div>
-        <button class="cls" onclick="closeChat()">✕</button>
+    <div class="flow">
+      <div class="step">
+        <div class="n">STEP 1</div>
+        <div class="t">AIGC 物料</div>
+        <div class="d">小红书 / 抖音 / 门店海报<br>快速批量产出视觉素材</div>
       </div>
-      <div class="chat-body" id="chatBody"></div>
-      <div class="chips" id="chatChips"></div>
-      <div class="chat-input">
-        <input id="chatInput" placeholder="问我产品、门店、写文案、玩游戏都可以～" onkeydown="if(event.key==='Enter')sendChat()">
-        <button onclick="sendChat()">发送</button>
+      <div class="arw">→</div>
+      <div class="step">
+        <div class="n">STEP 2</div>
+        <div class="t">H5 互动承接</div>
+        <div class="d">生成打卡海报 · 领券<br>打通到小程序下单</div>
+      </div>
+      <div class="arw">→</div>
+      <div class="step">
+        <div class="n">STEP 3</div>
+        <div class="t">智能体服务</div>
+        <div class="d">7×24 咨询应答<br>批量辅助生成 UGC 文案</div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- 人机分工 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">METHOD</span>
+      <h2>人机分工：AI 辅助，而非替代</h2>
+      <p>本项目由本人主导策划与验收，AI 工具负责执行落地</p>
+    </div>
+    <div class="split">
+      <div class="pane human">
+        <h4>人 · 策略与把关 <span>HUMAN</span></h4>
+        <ul>
+          <li>品牌策略、目标人群与传播节奏的制定</li>
+          <li>提示词工程：从初稿到定稿的三轮迭代与创意判断</li>
+          <li>合规审核：禁用功效表述、内容终审</li>
+          <li>KPI 设定、预算逻辑与项目复盘</li>
+        </ul>
+      </div>
+      <div class="pane ai">
+        <h4>AI · 执行与提效 <span>AI</span></h4>
+        <ul>
+          <li>批量生成多版本视觉物料，缩短出图周期</li>
+          <li>生成三种风格的种草文案初稿</li>
+          <li>7×24 承接重复性用户咨询</li>
+          <li>H5 与智能体的代码实现在 AI 编程助手辅助下完成</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-row">
+      <div class="l">AI 营销应用作品集 · 青雾「桂雾冷萃」新品全案</div>
+      <div class="foot-links">
+        <a href="./demo.html">H5 体验</a>
+        <a href="./AI营销作品集_青雾桂雾冷萃.pdf" target="_blank">全案 PDF</a>
+        <a href="https://github.com/13886231247/ai-marketing-portfolio" target="_blank">GitHub 源码</a>
+      </div>
+    </div>
+  </footer>
+
 </div>
-
-<script src="chat-widget.js"></script>
-
-<script>
-/* ================= 埋点系统 ================= */
-const LS_KEY = 'xunguiji_events_v1';
-function track(name, props={}){
-  const ev = {t: Date.now(), name, ...props};
-  const arr = JSON.parse(localStorage.getItem(LS_KEY)||'[]');
-  arr.push(ev);
-  localStorage.setItem(LS_KEY, JSON.stringify(arr.slice(-200)));
-  console.log('[埋点]', name, props);
-  renderDash();
-}
-function getEvents(){ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }
-
-function renderDash(){
-  const evs = getEvents();
-  const pv = evs.filter(e=>e.name==='page_view').length;
-  const uv = new Set(evs.map(e=>e.uv||(e.uv=''))).size || (evs.length?1:0);
-  const posterGen = evs.filter(e=>e.name==='poster_generated').length;
-  const posterSave = evs.filter(e=>e.name==='poster_save_success').length;
-  const couponClick = evs.filter(e=>e.name==='click_claim_coupon').length;
-  const couponGot = evs.filter(e=>e.name==='claim_coupon_success').length;
-  const share = evs.filter(e=>e.name==='share_success').length;
-  const storeQ = evs.filter(e=>e.name==='query_store').length;
-  const toMini = evs.filter(e=>e.name==='jump_miniapp').length;
-  const agentChat = evs.filter(e=>e.name==='agent_chat').length;
-  const kpis = [
-    {v:pv,k:'页面访问 PV'},{v:posterGen,k:'海报生成'},{v:posterSave,k:'海报保存'},
-    {v:couponGot,k:'领券成功'},{v:share,k:'分享成功'},{v:toMini,k:'跳转小程序'},
-    {v:agentChat,k:'智能体对话'},
-  ];
-  document.getElementById('kpiGrid').innerHTML =
-    kpis.map(x=>`<div class="kpi"><div class="v">${x.v}</div><div class="k">${x.k}</div></div>`).join('');
-  document.getElementById('evLog').innerHTML =
-    evs.slice(-30).reverse().map(e=>{
-      const tm = new Date(e.t).toLocaleTimeString('zh-CN');
-      return `<div>[${tm}] ${e.name} ${JSON.stringify(e).length>0? Object.keys(e).filter(k=>!['t','name','uv'].includes(k)).map(k=>k+'='+e[k]).join(' '):''}</div>`;
-    }).join('') || '<div>暂无事件，去逛逛吧</div>';
-}
-function openDash(){
-  renderDash();
-  document.getElementById('dash').classList.add('open');
-  track('open_dashboard');
-}
-
-/* ================= 页面路由 ================= */
-function go(p){
-  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
-  document.getElementById('page-'+p).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===p));
-  window.scrollTo({top:0});
-  track('page_view',{page:p});
-}
-
-/* ================= 分享 ================= */
-function shareActivity(){
-  track('click_share');
-  showModal('🍂','分享「寻桂集」','（Demo 演示）实际投放中此处拉起微信分享面板，分享至朋友圈或好友。','我知道了');
-}
-function shareSuccess(){
-  track('share_success');
-  const c = document.getElementById('couponShare');
-  c.classList.remove('locked');
-  c.querySelector('.use').textContent = '立即使用';
-  c.querySelector('.use').onclick = ()=>useCoupon('满20减3通用券');
-  c.querySelector('.d').innerHTML = '已解锁！分享成功奖励已发放至卡包';
-  showToast('解锁成功：满 20 减 3 通用券已入卡包');
-}
-
-/* ================= 门店 ================= */
-const STORES = {
-  '杭州':[
-    {n:'青雾 · 湖滨银泰店',a:'上城区延安路 98 号银泰 in77 B 区 1F',s:'on'},
-    {n:'青雾 · 武林路店',a:'拱墅区武林路 211 号',s:'on'},
-    {n:'青雾 · 滨江天街店',a:'滨江区江汉路 151 号龙湖天街 3F',s:'on'},
-    {n:'青雾 · 良渚大屋顶店',a:'余杭区良渚文化村晓书馆旁',s:'pre'},
-  ],
-  '上海':[
-    {n:'青雾 · 安福路店',a:'徐汇区安福路 132 号',s:'on'},
-    {n:'青雾 · 静安嘉里中心店',a:'静安区南京西路 1515 号 N1-11',s:'on'},
-    {n:'青雾 · 五角场合生汇店',a:'杨浦区翔殷路 1099 号 2F',s:'pre'},
-  ],
-  '南京':[
-    {n:'青雾 · 老门东店',a:'秦淮区剪子巷 54 号',s:'on'},
-    {n:'青雾 · 德基广场店',a:'玄武区中山路 18 号德基广场 7F',s:'pre'},
-  ],
-};
-let curCity = '杭州';
-function renderStores(){
-  document.getElementById('cityTabs').innerHTML =
-    Object.keys(STORES).map(c=>`<div class="city-tab ${c===curCity?'on':''}" onclick="pickCity('${c}')">${c}</div>`).join('');
-  document.getElementById('storeList').innerHTML =
-    STORES[curCity].map(s=>`
-      <div class="store">
-        <div class="dot ${s.s}"></div>
-        <div class="info"><div class="name">${s.n}</div><div class="addr">${s.a}</div></div>
-        <div class="status ${s.s}">${s.s==='on'?'新品已上线':'即将上线'}</div>
-      </div>`).join('');
-}
-function pickCity(c){
-  curCity=c; renderStores();
-  track('query_store',{city:c});
-}
-
-/* ================= AI 海报（Canvas） ================= */
-let userImg = null, curFilter = 'warm', photoSeq = 0;
-document.getElementById('fileInput').addEventListener('change', function(e){
-  const f = e.target.files[0]; if(!f) return;
-  const rd = new FileReader();
-  rd.onload = ev=>{
-    const img = new Image();
-    img.onload = ()=>{
-      userImg = img;
-      track('upload_photo',{filter:curFilter});
-      genPoster();
-    };
-    img.src = ev.target.result;
-  };
-  rd.readAsDataURL(f);
-});
-function pickFilter(el){
-  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  curFilter = el.dataset.f;
-  if(userImg){ track('switch_filter',{filter:curFilter}); genPoster(); }
-}
-function regen(){
-  if(!userImg) return showToast('先上传一张照片哦');
-  photoSeq++;
-  track('click_regenerate',{seq:photoSeq});
-  genPoster();
-}
-function genPoster(){
-  const cv = document.getElementById('posterCanvas');
-  const ctx = cv.getContext('2d');
-  const W = cv.width, H = cv.height;
-  /* 1. 用户照片 cover 裁剪铺满 */
-  const scale = Math.max(W/userImg.width, H/userImg.height);
-  const dw = userImg.width*scale, dh = userImg.height*scale;
-  ctx.clearRect(0,0,W,H);
-  /* 2. 滤镜 */
-  const filters = {
-    warm:'saturate(1.08) sepia(0.18) brightness(1.04) contrast(0.98)',
-    mist:'saturate(0.82) hue-rotate(8deg) brightness(1.05) contrast(0.95)',
-    clear:'saturate(1.02) brightness(1.12) contrast(0.96)',
-  };
-  ctx.filter = filters[curFilter];
-  ctx.drawImage(userImg,(W-dw)/2,(H-dh)/2,dw,dh);
-  ctx.filter = 'none';
-  /* 3. 底部品牌渐变遮罩 */
-  const g = ctx.createLinearGradient(0,H*0.55,0,H);
-  g.addColorStop(0,'rgba(31,58,52,0)');
-  g.addColorStop(0.55,'rgba(31,58,52,0.55)');
-  g.addColorStop(1,'rgba(31,58,52,0.92)');
-  ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-  /* 顶部轻雾青渐变 */
-  const g2 = ctx.createLinearGradient(0,0,0,H*0.2);
-  g2.addColorStop(0,'rgba(231,240,238,0.5)');
-  g2.addColorStop(1,'rgba(231,240,238,0)');
-  ctx.fillStyle = g2; ctx.fillRect(0,0,W,H*0.2);
-  /* 4. 随机飘落桂花（定稿风格：少量、暖金） */
-  const n = 14 + photoSeq % 5;
-  for(let i=0;i<n;i++){
-    const x = Math.random()*W, y = Math.random()*H*0.75;
-    const r = 3+Math.random()*5;
-    ctx.save();
-    ctx.translate(x,y); ctx.rotate(Math.random()*Math.PI);
-    ctx.globalAlpha = 0.5+Math.random()*0.4;
-    ctx.fillStyle = Math.random()>0.3?'#E5C77E':'#C9A227';
-    ctx.beginPath(); ctx.ellipse(0,0,r*1.6,r,0,0,Math.PI*2); ctx.fill();
-    ctx.restore();
-  }
-  /* 5. 品牌框线 */
-  ctx.strokeStyle='rgba(245,233,200,0.65)'; ctx.lineWidth=2;
-  ctx.strokeRect(40,40,W-80,H-80);
-  /* 6. 文案 */
-  ctx.textAlign='center';
-  ctx.fillStyle='rgba(245,233,200,0.95)';
-  ctx.font='600 34px "PingFang SC",sans-serif';
-  ctx.fillText('青雾 · 寻桂集', W/2, H-300);
-  ctx.fillStyle='#FFFFFF';
-  ctx.font='800 84px "PingFang SC",sans-serif';
-  ctx.shadowColor='rgba(0,0,0,.35)'; ctx.shadowBlur=14;
-  ctx.fillText('秋日第一杯', W/2, H-210);
-  ctx.fillText('桂花冷萃', W/2, H-118);
-  ctx.shadowBlur=0;
-  ctx.fillStyle='rgba(255,255,255,0.85)';
-  ctx.font='400 30px "PingFang SC",sans-serif';
-  ctx.fillText('桂雾冷萃 · 秋季限定', W/2, H-64);
-  /* 7. 展示 */
-  document.getElementById('posterWrap').style.display='block';
-  document.getElementById('posterWrap').scrollIntoView({behavior:'smooth'});
-  track('poster_generated',{filter:curFilter, seq:photoSeq});
-}
-function savePoster(){
-  const a = document.createElement('a');
-  a.download = '青雾寻桂集_打卡海报.png';
-  a.href = document.getElementById('posterCanvas').toDataURL('image/png');
-  a.click();
-  track('poster_save_success');
-  showToast('海报已保存到本地，去分享吧！');
-  setTimeout(()=>{
-    showModal('🎉','分享成功解锁福利','（Demo 演示）分享成功后，满 20 减 3 通用券将自动入卡包。','模拟分享成功',()=>shareSuccess());
-  }, 1200);
-}
-
-/* ================= 优惠券 ================= */
-function claimCoupon(){
-  track('click_claim_coupon');
-  const btn = document.getElementById('claimBtn');
-  btn.textContent = '领取中…';
-  setTimeout(()=>{
-    const c = document.getElementById('couponMain');
-    c.classList.add('got');
-    btn.textContent = '立即使用';
-    btn.onclick = ()=>useCoupon('9元新品立减券');
-    track('claim_coupon_success');
-    showToast('领取成功！9 元券已存入卡包');
-  }, 700);
-}
-function useCoupon(name){
-  track('jump_miniapp',{coupon:name});
-  showModal('🧋','跳转品牌小程序','（Demo 演示）实际投放中此处通过微信开放标签 wx-open-launch-weapp 直接拉起「青雾点单」小程序的「桂雾冷萃」商品页，完成下单核销。','我知道了');
-}
-
-/* ================= 通用组件 ================= */
-let modalCb = null;
-function showModal(ico,title,text,btnText,cb){
-  document.getElementById('modalCard').innerHTML =
-    `<div class="ico">${ico}</div><h4>${title}</h4><p>${text}</p><button onclick="closeModal(true)">${btnText}</button>`;
-  modalCb = cb||null;
-  document.getElementById('modal').classList.add('open');
-}
-function closeModal(fire){
-  document.getElementById('modal').classList.remove('open');
-  if(fire && modalCb) modalCb();
-  modalCb = null;
-}
-document.getElementById('modal').addEventListener('click',e=>{
-  if(e.target.id==='modal') closeModal(false);
-});
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2200);
-}
-
-/* ================= 初始化 ================= */
-renderStores();
-track('page_view',{page:'home', first:true});
-</script>
 </body>
 </html>
